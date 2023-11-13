@@ -9,6 +9,14 @@
 #include <linux/fb.h>
 #include <sys/mman.h>
 
+#define RED		0xFF0000
+#define ORANGE	0xFF7F00
+#define YELLOW	0xFFFF00
+#define GREEN	0x00FF00
+#define CYAN	0x00FFFF
+#define BLUE	0x0000FF
+#define PURPLE	0x7F00FF
+
 #define DEVICE_FB_PATHNAME	"/dev/fb0"
 
 int main(){
