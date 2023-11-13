@@ -2,7 +2,9 @@
 
 int main(){
 
-	fopen("main.c","wb");
+	FILE *fp = fopen("main.c","wb");
+	
+	fclose(fp);
 
 	return 0;
 }
