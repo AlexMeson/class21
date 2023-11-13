@@ -2,7 +2,7 @@
 
 int main(){
 
-	printf("xxxx\n");
+	fopen("main.c","wb");
 
 	return 0;
 }
