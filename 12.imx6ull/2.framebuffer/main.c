@@ -13,9 +13,10 @@ int main(){
 		return -1;
 	}
 
-	memset(p_fbmem, 0x00, fbmem_size);
+	fbClean(PURPLE);
+	fbDisplayImage(512, 300, gImage_ASCII_888, 921, 600);
 
-	fbShowImage(0, 0,gImage_ASCII_888, 921, 600);
+	//fbShowImage(0, 0,gImage_ASCII_888, 921, 600);
 
 	fbDestory();
 	return 0;

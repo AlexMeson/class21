@@ -6,16 +6,74 @@ struct fb_var_screeninfo vinfo;	/* 用来存储屏幕信息可变参数 */
 size_t fbmem_size;
 void *p_fbmem = NULL;
 
+/* 在屏幕中显示一个像素点(RGB888) */
 void fbDisplayPixel(int x, int y, int color){
+	/* 在屏幕中找到目标像素点的起始地址 */
+	unsigned char  *pen8  = p_fbmem + (y * vinfo.xres + x) * vinfo.bits_per_pixel / 8;
+	unsigned short *pen16 = (unsigned short *)pen8;
+	unsigned int   *pen32 = (unsigned int *)pen8;
+	int red, green, blue;
 
+	if( x >= vinfo.xres || x < 0 ){
+		return;
+	}
+	if( y >= vinfo.yres || y < 0 ){
+		return;
+	}
+
+	/* 检查位深 */
+	switch( vinfo.bits_per_pixel ){
+		case 8 : {	/* RGB332 */
+			red   = (color >> 16) & 0xff;
+			green = (color >>  8) & 0xff;
+			blue  = color & 0xff;
+			color = ((red >> 5) << 5) | ((green >> 5) << 2) | (blue >> 6);
+			*pen8 = color;
+			break;
+		};
+		case 16: {	/* RGB565 */
+			red   = (color >> 16) & 0xff;
+			green = (color >>  8) & 0xff;
+			blue  = color & 0xff;
+			color = ((red >> 3) << 11) | ((green >> 2) << 5) | (blue >> 3);
+			*pen16 = color;
+			break;
+		};
+		case 32: {	/* RGB888 */
+			*pen32 = color;
+		};
+		default : printf("Can not suppport %u bits_per_pixel.\n", vinfo.bits_per_pixel);
+	}
 }
 
+void fbClean(int color){
+	int i, j;
+	for(i = 0; i < vinfo.xres; i++){
+		for(j = 0; j < vinfo.yres; j++){
+			fbDisplayPixel(i, j, color);
+		}
+	}
+}
+
+/* 显示一行像素的数据 RGB888 */
 void fbDisplayLineData(int x, int y, int width, const unsigned char *pline){
-
+	int i;
+	int ix = x;
+	int color;
+	for(i = 0; i < width * 3; i += 3, ix++){
+		color = (pline[i] << 16) | (pline[i+1] << 8) | pline[i+2] ;	/* 组合RGB888 */
+		fbDisplayPixel(ix, y, color);
+	}
 }
 
+/* 将一张图片显示在LCD中 RGB888 */
 void fbDisplayImage(int x, int y,const unsigned char *pImage, int width, int height){
-	
+	int i;
+	unsigned char *p_image = (unsigned char *)pImage;
+	for(i = 0; i < height; i++, y++){
+		fbDisplayLineData(x, y, width, p_image);
+		p_image += width * 3;
+	}
 }
 
 
