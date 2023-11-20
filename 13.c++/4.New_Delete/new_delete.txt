@@ -1,0 +1,56 @@
+C++ 动态分配和撤销内存的运算符 new 和 delete
+
+在软件开发的过程中，常常需要动态地分配和撤销内存空间、例如对动态链表中节点的插入和删除。
+在C语言中是利用库函数malloc和free来分配和撤销内存空间的。C++则提供了较为简便而功能较强的运算符new和delete来取代malloc和free函数。
+注意：new和delete是运算符，不是函数，因此执行效率更高。
+为了与C语言兼容，C++仍保留了malloc和free函数，但不建议使用，转而使用new和delete.
+
+举例：
+    /* 开辟一个存放整型的存储空间，返回一个指向该存储空间的地址(指针) */
+    int *p = new int;
+    /* 开辟一个存放整型的存储空间，并指定该整数的初值为100 */
+	int *p = new int(100);
+    /* 开辟一个存放二维整型数组的空间，返回首元素的地址 */
+    int (*p)[4] = new int[5][4];
+
+new 运算符使用的一般格式为：new 类型(初值)
+用new分配数组空间时不能指定初值。如果由于内存不足等原因而无法正常分配空间，
+则new会返回一个空指针NULL，用户可以根据该指针的初值判断分配空间是否成功。
+
+delete运算符使用的一般格式为：delete []指针变量
+对基本数据类型的申请可以直接释放
+如果是类似"char *pt = new char[10]"申请的字符数组空间(构造数据类型空间)，
+释放时应在指针变量前加一对方括号，表示是对数组空间的操作：delete []pt;
+
+举例：开辟空间以存放一个结构体变量
+
+#include <iostream>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+struct user{
+    string username;
+    unsigned short user_level;
+};
+typedef struct user  T_USER;
+typedef struct user *P_USER;
+
+/* 主函数 */
+int main(){
+
+    P_USER p = new T_USER;
+
+    p->username = "Alex Meson";
+    p->user_level = 4567;
+
+    cout << "user name :" << setw(16) << p->username << endl;
+    cout << "user level:" << setw(16) << p->user_level << endl;
+
+    delete p;
+
+    return 0;
+}
+
+要访问用new所开辟的结构体空间，无法直接通过用变量名进行，只能通过指针进行访问。

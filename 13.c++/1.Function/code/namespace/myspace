@@ -1,0 +1,9 @@
+#ifndef _MYSPACE_
+#define _MYSPACE_
+
+/* 定义命名空间 要使用命名空间中的内容时 需要在使用标识符前加上限定符 */
+namespace meson{
+	int a;
+};
+
+#endif /* _MYSPACE */
