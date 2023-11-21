@@ -6,18 +6,23 @@ myPage::myPage(QWidget *parent) : QWidget(parent) , ui(new Ui::myPage) {
     //初始化Ui相关设置 为ui指针分配内存
     ui->setupUi(this);
 
-    ui->btn->setText("Hello");
+    ui->btn->setText("CLICK");  //将Ui中按钮对象btn本文内容设置为"CLICK"
 
-    //connect( &发送者, SIGNAL(信号名称), &接收者, SLOT(函数名称) );
-    //关联信号和槽 - 按钮对象btn 点击发出信号clicked() 激活本类对象的行为hello()
-    connect( ui->btn , SIGNAL(clicked(bool)), this, SLOT(slot_btn_clicked()) );
-//    connect( ui->btn , SIGNAL(clicked(bool)), this, SLOT(slot_btn_clicked()) );
-//    connect( ui->btn , SIGNAL(clicked(bool)), this, SLOT(slot_btn_clicked()) );
+    //将背景色设置为红色
+    this->setStyleSheet("background-color: rgb(255, 0, 0);");
+
+    connect(ui->btn, SIGNAL(pressed()), this, SLOT(slot_btn_pressed()));
+    connect(ui->btn, SIGNAL(released()), this, SLOT(slot_btn_released()));
 }
 
-void myPage::slot_btn_clicked(){
-    qDebug() << "Hello world!";   //C++风格
-    disconnect( ui->btn , SIGNAL(clicked(bool)), this, SLOT(slot_btn_clicked()) );
+//槽函数 按键按下
+void myPage::slot_btn_pressed(){
+    this->setStyleSheet("background-color: rgb(0, 0, 255);");
+}
+
+//槽函数 按键抬起
+void myPage::slot_btn_released(){
+    this->setStyleSheet("background-color: rgb(255, 0, 0);");
 }
 
 myPage::~myPage(){

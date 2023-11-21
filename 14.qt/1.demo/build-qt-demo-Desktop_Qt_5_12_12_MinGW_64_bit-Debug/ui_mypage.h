@@ -26,9 +26,16 @@ public:
         if (myPage->objectName().isEmpty())
             myPage->setObjectName(QString::fromUtf8("myPage"));
         myPage->resize(400, 300);
+        myPage->setStyleSheet(QString::fromUtf8(""));
         btn = new QPushButton(myPage);
         btn->setObjectName(QString::fromUtf8("btn"));
-        btn->setGeometry(QRect(70, 70, 91, 31));
+        btn->setGeometry(QRect(70, 70, 101, 41));
+        QFont font;
+        font.setFamily(QString::fromUtf8("Consolas"));
+        font.setPointSize(14);
+        font.setBold(true);
+        font.setWeight(75);
+        btn->setFont(font);
 
         retranslateUi(myPage);
 
@@ -38,7 +45,7 @@ public:
     void retranslateUi(QWidget *myPage)
     {
         myPage->setWindowTitle(QApplication::translate("myPage", "myPage", nullptr));
-        btn->setText(QApplication::translate("myPage", "PushButton", nullptr));
+        btn->setText(QString());
     } // retranslateUi
 
 };

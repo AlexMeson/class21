@@ -16,13 +16,13 @@ class myPage : public QWidget{
 public:
     myPage(QWidget *parent = nullptr);  //构造函数
     ~myPage();                          //析构函数
-public slots:
-    void slot_btn_clicked();   //公有槽函数
 
 private:
     Ui::myPage *ui; //ui指针 可以通过ui指针访问界面中的成员组件
 
-signals:
-    void my_signal();
+private slots:
+    void slot_btn_pressed();
+    void slot_btn_released();
+    void slot_btn_toggled();
 };
 #endif // MYPAGE_H
