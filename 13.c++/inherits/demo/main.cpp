@@ -3,14 +3,26 @@
 
 using namespace std;
 
+class xxx{
+public:
+    //explicit 防止有参函数发生隐式类型转换
+//    explicit xxx(int n1, int n2, int n3){
+//        a = n1;
+//        b = n2;
+//        c = n3;
+//    }
+    /* 构造函数形参初始化列表 */
+    explicit xxx(int n1, int n2, int n3) : a(n1), b(n2), c(n3){
+    }
+    int a;
+    int b;
+    int c;
+};
+
 /* 主函数 */
 int main(){
 
-    super_user x;
-    x.user_level = 789;
-    x.user_name  = "Meson";
-
-    x.outputData();
+    xxx obj(78,45,12);
 
 
     return 0;
