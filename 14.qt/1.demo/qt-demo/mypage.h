@@ -22,7 +22,5 @@ private:
 
 private slots:
     void slot_btn_pressed();
-    void slot_btn_released();
-    void slot_btn_toggled();
 };
 #endif // MYPAGE_H

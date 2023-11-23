@@ -26,3 +26,7 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+#将构建模式切换为发布模式(Released)
+#运行测试 使构建目录中 .../build-projectName-KitsName-Released/released/ 生成可执行文件
+#将可执行文件放到一个独立的空目录中 在该目录下使用Kits对应的终端执行windeployqt your.exe

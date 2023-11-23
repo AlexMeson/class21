@@ -1,0 +1,55 @@
+{
+    "log_id": 4160887777964368179,
+    "result": [
+        {
+            "score": 0.8241143226623535,
+            "name": "果蔬生鲜",
+            "location": {
+                "width": 89,
+                "top": 113,
+                "left": 383,
+                "height": 204
+            }
+        },
+        {
+            "score": 0.8606756329536438,
+            "name": "家居家纺",
+            "location": {
+                "width": 112,
+                "top": 105,
+                "left": 139,
+                "height": 203
+            }
+        },
+        {
+            "score": 0.6238403916358948,
+            "name": "食品饮料",
+            "location": {
+                "width": 67,
+                "top": 125,
+                "left": 491,
+                "height": 176
+            }
+        },
+        {
+            "score": 0.10546552389860153,
+            "name": "文化娱乐",
+            "location": {
+                "width": 48,
+                "top": 183,
+                "left": 231,
+                "height": 95
+            }
+        },
+        {
+            "score": 0.7283627986907959,
+            "name": "家居家电",
+            "location": {
+                "width": 72,
+                "top": 89,
+                "left": 285,
+                "height": 244
+            }
+        }
+    ]
+}

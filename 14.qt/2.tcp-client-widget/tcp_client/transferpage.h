@@ -1,12 +1,18 @@
 #ifndef TRANSFERPAGE_H
 #define TRANSFERPAGE_H
 
+#include <iostream>
+#include <string>
+
 #include <QWidget>
 #include <QStringList>
 #include <QString>
 #include <QDebug>
 #include <QTcpSocket>
 #include <QMessageBox>
+#include <QTextCodec>
+#include <QByteArray>
+#include <QDateTime>
 
 namespace Ui {
 class transferPage;
@@ -31,6 +37,9 @@ private slots:
     void slot_btnDisconnect_clicked();
     void slot_btnSend_clicked();
     void slot_btnBack_clicked();
+    void slot_connectEstablished();
+    void slot_diconnectedCompleted();
+    void slot_tcpsocketReaddata();
 signals:
     void signal_backto_input();
 };
